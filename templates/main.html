@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Document</title>
+       <script  src="http://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+      <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+  <link rel="stylesheet" href="/resources/demos/style.css">
+<!--  <script src="https://code.jquery.com/jquery-1.12.4.js"></script>-->
+  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+  
+  <script>
+  $( function() {
+    $( "#accordion" ).accordion({
+      collapsible: true
+    });
+  } );
+  </script>
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="../css/main.css">
+<script src="../main.js"></script>
+<script src="main.js"></script>
+
+</head>
+<body>
+
+<div class="shadow" onclick="hide_add_task('body_note'); hide_add_task('body_event')"></div>
+<header class="container-fluid header">
+<ul class="header-menu nav justify-content-end">
+    <li><a href="#" onclick="show_add_task('body_note')">Создать задачу</a></li>
+    <li><a href="#" onclick="show_add_task('body_event')">Создать событие</a></li>
+    <li><a href="#">Помощь</a></li>
+    <li><a href="#">Контакты</a></li>
+    <li><a href="#">Личный кабинет</a></li>
+    <li><a href="exit.php">Выйти</a></li>
+</ul>
+</header>
+<main class="main-spaice container-fluid">
+    <div class="main col-lg-3 col-sm-4">
+      <div class="nav_left"  id="accordion">
+       <h3 class="title_block">Задачи</h3>
+       <div class="sidebad">
+       <div id="show_task_preview"></div>
+       <button id="get_task_link" onclick="get_task()">Получить список всех задач</button>
+       </div>
+       <h3  class="title_block" id="event_title">События</h3>
+       <div class="sidebad"></div>
+       <h3  class="title_block">Восмоминания</h3>
+       <div class="sidebad">
+          
+       </div>
+       <h3  class="title_block">Что еще нужно сделать</h3>
+       <div class="sidebad">
+           <p>сделать: полученные задачи сортировать по дате, выводить на главный экран только 3/4 самых ближайзих по времени</p>
+<p>сделать: отправлять задачи со стаой датой в "Просроченные"</p>
+<p>сортировка по тегам и приоритету</p>
+<p>Добавить кнопку выполненные, перенаправлять задачи в выполненное</p>
+<p>Сделать по клику переход с маленькой на полную версию задачи</p>
+<p>Для новичка сделать кроме приветствия обучалку по ресурсу</p>
+       </div>
+       </div>
+    </div> 
+    <div class="main col-lg-6 col-sm-6" id="body_note">
+    <form method="post" id="add_task">
+       <p class="close_add_form"  onclick="hide_add_task('body_note')">X</p>
+        <input type="text" name="task_name" placeholder="Создайте задачу">
+        <input type="textarea" name="task_body" placeholder="Необязательный комментарий">
+        <div class="select">
+            <label for="priority">Приоритет</label><br>
+        <select name="priority" size="1">
+            <option value="1">Низкий</option>
+            <option value="2">Средний</option>
+            <option value="3">Высокий</option>
+        </select>
+        </div>
+        <div class="select">
+        <label for="regularity">Регулярность</label><br>
+        <select name="regularity" size="1">
+            <option value="1">Одноразово</option>
+            <option value="2">Каждый день</option>
+            <option value="3">Каждую неделю</option>
+            <option value="4">Каждый месяц</option>
+            <option value="5">Каждый год</option>
+        </select>
+        </div>
+        <div class="select">
+        <label for="tag">Теги</label><br>
+        <select name="tag" size="1" id="result_form_get_tag">
+        </select>
+        </div>
+        <input type="date" name="date" id='add_date'>
+        <input type="time" name="time">
+
+        <button id="btn_add_task" class="btn">Добавить задачу</button>
+    </form>
+      
+       <div id="result_form_add_task"></div>
+    <div class="tag">
+             <form method="post" id="add_tag">
+                 <input type="text" name="tag" placeholder="Создайте тег">
+                 <button id="btn_add_tag" class="btn">Добавить тег</button>
+             </form>
+    </div>
+    </div>
+    <div class="main col-lg-6 col-sm-6" id="body_event">
+    <form method="post" id="add_event">
+       <p class="close_add_form"  onclick="hide_add_task('body_event')">X</p>
+        <input type="text" name="event_name" placeholder="Создайте событие">
+        <input type="textarea" name="event_body" placeholder="Необязательный комментарий">
+        <input type="text" name="place" placeholder="Место проведения (при наличии)">
+        <div class="select">
+            <label for="priority">Приоритет</label><br>
+        <select name="priority" size="1">
+            <option value="1">Низкий</option>
+            <option value="2">Средний</option>
+            <option value="3">Высокий</option>
+        </select>
+        </div>
+        <div class="select">
+        <label for="regularity">Регулярность</label><br>
+        <select name="regularity" size="1">
+            <option value="1">Одноразово</option>
+            <option value="2">Каждый день</option>
+            <option value="3">Каждую неделю</option>
+            <option value="4">Каждый месяц</option>
+            <option value="5">Каждый год</option>
+        </select>
+        </div>
+        <div class="select">
+        <label for="tag">Теги</label><br>
+        <select name="tag" size="1" id="result_form_get_tag_event">
+        </select>
+        </div>
+        <input type="date" name="date" id='add_date'>
+   
+
+        <button id="btn_add_event" class="btn">Добавить событие</button>
+    </form>
+      
+       <div id="result_form_add_event"></div>
+    <div class="tag">
+             <form method="post" id="add_tag">
+                 <input type="text" name="tag" placeholder="Создайте тег">
+                 <button id="btn_add_tag" class="btn">Добавить тег</button>
+             </form>
+    </div>
+    </div>
+<div id="result_form" class="main col-lg-6 col-sm-5"></div>
+<div id="sort_sidebar" class="main col-lg-2 col-sm-2">
+    
+          <ul class="sort">
+              <li><a href="#"  onclick="sortTask('sortTaskPriority.php', '1')">Низкий</a></li>
+              <li><a href="#"  onclick="sortTask('sortTaskPriority.php', '2')">Средний</a></li>
+              <li><a href="#"  onclick="sortTask('sortTaskPriority.php', '3')">Высокий</a></li>
+          </ul>
+          
+           <ul class="sort">
+              <li><a href="#"  onclick="sortTask('sortTaskRegularity.php', '1')">Одноразово</a></li>
+              <li><a href="#"  onclick="sortTask('sortTaskRegularity.php', '2')">Каждый день</a></li>
+              <li><a href="#"  onclick="sortTask('sortTaskRegularity.php', '3')">Каждую неделю</a></li>
+              <li><a href="#"  onclick="sortTask('sortTaskRegularity.php', '4')">Каждый месяц</a></li>
+              <li><a href="#"  onclick="sortTask('sortTaskRegularity.php', '5')">Каждый год</a></li>
+          </ul>
+</div>
+
+</main>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+</body>
+</html>

@@ -1,0 +1,237 @@
+:root
+{
+    --backround-form: #e6eee3;
+    --color-text: #005500;
+    --nav_btn-color: #2bacaa;
+    --nav_btn-color-hover: #216564;
+}
+body{
+    margin: 0;
+    padding: 0;
+}
+.header{
+    background: #90b081;
+    padding: 15px;
+    box-shadow: #90b081 0 0 5px 5px;
+}
+.header-menu>li{
+    padding: 0px 15px;
+}
+.header-menu>li>a{
+    color: #005500;
+    font-weight: 500;
+    font-size: 1.2em;
+}
+.main{
+    margin-top: 250px;
+/*    display: none;*/
+}
+.wraper
+{
+    position: absolute;
+    width: 1px;
+    display: inline-block;
+}
+.divider
+{
+    width: 1px;
+    background: #005500;
+    height: 300px;
+}
+.about
+{
+    width: 45%;
+}
+
+.about-left{
+    float: left;
+    font-size: 1.3em;
+}
+
+@media screen and (max-width: 1090px)
+{
+    .about-left{
+    font-size: 1em;
+}
+
+}
+
+#about_left
+{
+    height: 290px;
+    padding-right: 30%;
+    position: relative;
+}
+#about_left>div
+{
+    text-align: center;
+}
+#onePage, #twoPage, #threePage
+{
+    padding-top: 80px;
+}
+.about-right{
+    float: right;
+}
+.about-right>p, .about-right>h4
+{
+    text-align: center;
+}
+.about-right>p
+{
+    font-size: .8em;
+}
+/*Описание самопрезентации*/
+#twoPage, #threePage{
+    display: none;
+}
+.title
+{
+    font-weight: 600;
+    color: var(--color-text);
+    font-size: 1.5em;
+}
+.radio {
+	display: none;
+}
+
+.radio_position
+{
+    position: absolute;
+    margin-left: 20%;
+    bottom: 1px;
+}
+.radio-custom {
+	width: 20px;
+	height: 20px;
+	border: 2px solid #e6eee3;
+	position: relative;
+    margin: 5px;
+    bottom: 1px;
+}
+
+.radio-custom,
+.label {
+	display: inline-block;
+	vertical-align: middle;
+}
+
+.radio:checked + .radio-custom::before {
+	content: "";
+	display: block;
+	position: absolute;
+	top: 2px;
+	right: 2px;
+	bottom: 2px;
+	left: 2px;
+	background: #164116;
+    bottom: 1px;
+}
+.radio-custom,
+.radio:checked + .radio-custom::before {
+	border-radius: 50%;
+}
+/*Форма регистраци*/
+.reg
+{
+    position: relative;
+}
+.reg>input::placeholder{
+    color: #005500;
+    opacity: .5;
+}
+.reg>input
+{
+    margin: 10px;
+    width: 90%;
+    background: #e6eee3;
+    border: none;
+    padding: 5px;
+    border-radius: 5px;
+    color: #005500;
+}
+.reg-button
+{
+    width: 73px;
+    height: 73px;
+    border-radius: 50%;
+    background-image: url(submit.gif);
+    border: none;
+    position: absolute;
+    bottom: 33%;
+    right: 1%;
+    cursor: pointer;
+}
+/*Форма авторизации*/
+.auth
+{
+    display: none;
+    position: relative;
+    top: 300px;
+    margin: 0 auto;
+    width: 400px;
+    height: 240px;
+    box-shadow: #e2e2e2 0px 4px 2px 0px;
+    border-radius: 5px;
+}
+#auth-reg
+{
+    display: none;
+}
+#auth-form>.reg-button
+{
+    position: absolute;
+    top: 17px;
+}
+.auth>h4
+{
+    text-align: center;
+    padding-bottom: 30px;
+}
+.auth>a
+{
+    text-align: center;
+    color: #005500;
+}
+ .auth>a>p
+{
+    margin: 0;
+}
+/*О нас: завлекаловка*/
+#description
+{
+    margin-top: 50px;
+    display: none;
+}
+  .clearFix
+    {
+     clear: both;
+     content: "";
+    }
+.left
+{
+    
+    float: left;
+    width: 70%;
+     margin-bottom: 170px;
+}
+.right
+{
+    float: right;
+    width: 70%;
+    margin-bottom: 170px;
+}
+.img-desk
+{
+    width: 200px;
+    height: 150px;
+    border-radius: 50%;
+}
+.line
+{
+    margin: auto;
+    width: 70%;
+    height: 2px;
+    background: #005500;
+    margin-top: 50px;
+}

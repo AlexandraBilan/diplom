@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Remember All</title>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+        <script
+  src="https://code.jquery.com/jquery-3.3.1.min.js"
+  integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+  crossorigin="anonymous"></script>
+        <link rel="stylesheet" href="css/about.css">
+        <link rel="stylesheet" href="../css/about.css">
+        <script src="../about.js"></script>
+        <script src="about.js"></script>
+</head>
+<body>
+<header class="header container-fluid">
+<ul class="header-menu nav justify-content-end">
+    <li><a href="#" onclick="description()">О нас</a></li>
+    <li><a href="#">Помощь</a></li>
+    <li id="auth-menu"><a href="#auth" onclick="auth_menu()">Войти</a></li>
+    <li id="auth-reg"><a href="#" onclick="auth_reg()">Регистрация</a></li>
+</ul>
+</header>
+<div class="auth" id="auth">
+<h4>Войти в систему</h4>
+<form action="auth.php" method="post" id="auth-form" class="reg">
+    <input type="text" name="mail-auth" id="mail-auth" placeholder="e-mail">
+    <input type="password" name="pass-auth" id="pass-auth" placeholder="пароль">
+    <button type="submit" class="reg-button"></button>
+</form>
+<a href="rebuildpass.php"><p>Забыли пароль?</p>
+<p>Не страшно!</p></a>
+<form action="rebuildpass.php" method="post" style="display: none">
+	<input type="text" name="mail" placeholder="Введите mail"><br>
+	<input type="submit" value="Запросить обновление">
+</form>
+</div>
+<main class="main" id="main">
+<div class="container">
+<div class="about about-left">
+<div id="about_left">
+ <div id="onePage">Время — наш самый ценный ресурс! <span class="title">Remember All</span> поможет Вам его экономить.</div>
+ <div id="twoPage"> Разум, освобождённый от запоминания того, что должно быть сделано, может сконцентрироваться на выполнении самих задач.</div>
+ <div id="threePage">Правильно поставленная задача - это половина успешного ее выполнения!</div>
+ <div class="radio_position">
+ <div id="radio">
+ <label>
+<input class="radio" type="radio" name="radio-test" id="onePageRadio" onclick="show('onePage')" checked>
+<span class="radio-custom"></span>
+</label>
+<label>
+<input class="radio" type="radio" name="radio-test" id="twoPageRadio" onclick="show('twoPage')">
+<span class="radio-custom"></span>
+</label>
+<label>
+<input class="radio" type="radio" name="radio-test" id="threePageRadio" onclick="show('threePage')">
+<span class="radio-custom"></span>
+</label>
+ </div>
+ </div>
+</div>
+</div>
+<div class="wraper">
+    <div class="divider"></div>     
+</div>
+<div class="about about-right" id="check_in">
+  <h4>Впервые у нас?</h4>
+   <p>Мгновенная регистрация</p>
+    <form method="post" action="reg.php" class="reg" id="reg">
+      <input type="text" name="mail" id="mail" placeholder="e-mail">
+      <input type="text" name="login" id="login" placeholder="логин">
+      <input type="password" name="pass" id="pass" placeholder="пароль">
+      <input type="password" name="pass2" id="pass2" placeholder="повторите пароль">
+      <button type="submit" class="reg-button"></button>
+  </form></div>
+</div>
+</main>
+<div class="container" id="description">
+    <p class="left">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sed illum ipsa, ducimus esse facere, earum modi, perferendis laboriosam dolorum nesciunt laudantium cum sint? Eius accusamus perspiciatis quidem non, odio atque.</p>
+    <img src="../ex.jpg" alt="" class="img-desk">
+    <div class="line"></div>
+    <div class="clearFix"></div>
+    <p class="right">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sed illum ipsa, ducimus esse facere, earum modi, perferendis laboriosam dolorum nesciunt laudantium cum sint? Eius accusamus perspiciatis quidem non, odio atque.</p>
+    <img src="../ex.jpg" alt="" class="img-desk">
+    <div class="line"></div>
+    <div class="clearFix"></div>
+    <p class="left">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sed illum ipsa, ducimus esse facere, earum modi, perferendis laboriosam dolorum nesciunt laudantium cum sint? Eius accusamus perspiciatis quidem non, odio atque.</p>
+    <img src="../ex.jpg" alt="" class="img-desk">
+<!--    <div class="line"></div>-->
+    <div class="clearFix"></div>
+</div>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+</body>
+</html>
