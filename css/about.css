@@ -50,10 +50,10 @@ body{
 
 @media screen and (max-width: 1090px)
 {
-    .about-left{
+    .about-left
+    {
     font-size: 1em;
-}
-
+    }
 }
 
 #about_left

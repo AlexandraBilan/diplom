@@ -10,7 +10,7 @@
   <link rel="stylesheet" href="/resources/demos/style.css">
 <!--  <script src="https://code.jquery.com/jquery-1.12.4.js"></script>-->
   <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-  
+  <script src="https://use.fontawesome.com/7fff6a4bd7.js"></script>
   <script>
   $( function() {
     $( "#accordion" ).accordion({
@@ -19,8 +19,10 @@
   } );
   </script>
     <link rel="stylesheet" href="css/main.css">
+<!--
     <link rel="stylesheet" href="../css/main.css">
 <script src="../main.js"></script>
+-->
 <script src="main.js"></script>
 
 </head>
@@ -29,8 +31,6 @@
 <div class="shadow" onclick="hide_add_task('body_note'); hide_add_task('body_event')"></div>
 <header class="container-fluid header">
 <ul class="header-menu nav justify-content-end">
-    <li><a href="#" onclick="show_add_task('body_note')">Создать задачу</a></li>
-    <li><a href="#" onclick="show_add_task('body_event')">Создать событие</a></li>
     <li><a href="#">Помощь</a></li>
     <li><a href="#">Контакты</a></li>
     <li><a href="#">Личный кабинет</a></li>
@@ -40,17 +40,34 @@
 <main class="main-spaice container-fluid">
     <div class="main col-lg-3 col-sm-4">
       <div class="nav_left"  id="accordion">
-       <h3 class="title_block">Задачи</h3>
+       <h3 class="title_block">Задачи <a title="Добавить задачу" href="#" onclick="show_add_task('body_note')"><i class="fa fa-plus fa-2x pancil"></i><i class="fa fa-pencil-square fa-2x"></i></a></h3>
        <div class="sidebad">
        <div id="show_task_preview"></div>
-       <button id="get_task_link" onclick="get_task()">Получить список всех задач</button>
+       <button onclick="get_task()">Получить список всех задач</button>
        </div>
-       <h3  class="title_block" id="event_title">События</h3>
-       <div class="sidebad"></div>
-       <h3  class="title_block">Восмоминания</h3>
+       <h3  class="title_block" id="event_title">События <a  title="Добавить событие"  href="#" onclick="show_add_task('body_event')"><i class="fa fa-plus fa-2x book"></i><i class="fa fa-address-book fa-2x"></i></a></h3>
        <div class="sidebad">
-          
+            <div id="show_event_preview"></div>
+            <button onclick="get_full_event()">Получить список всех событий</button>
        </div>
+       <h3  class="title_block" id="memory_title">Воспоминания<a  title="Добавить воспоминание"  href="#" onclick="show_add_task('body_memory')"><i class="fa fa-plus fa-2x camera"></i><i class="fa fa-camera-retro fa-2x"></i></a></h3>
+       <div class="sidebad">
+            <div id="show_memory_preview"></div>
+            <button onclick="get_memory()">Получить список всех воспоминаний</button>
+       </div>
+        <h3  class="title_block" id="done_title"> <i class="fa fa-check-square-o fa-2x"> </i>Выполненное</h3>
+       <div class="sidebad">
+       </div>
+       <h3  class="title_block" id="overdue_title"> <i class="fa fa-calendar-times-o fa-2x"> </i>Просроченное</h3>
+       <div class="sidebad">
+       <p>Просроченные задачи</p>
+       <div id="show_overdue_preview_task"></div>
+       <button onclick="show_overdue_task();">Показать все просроченные задачи</button>
+       <p>Просроченные события</p>
+       <div id="show_overdue_preview_event"></div>
+       <button onclick="show_overdue_event();">Показать все просроченные события</button>
+       </div>
+      
        <h3  class="title_block">Что еще нужно сделать</h3>
        <div class="sidebad">
            <p>сделать: полученные задачи сортировать по дате, выводить на главный экран только 3/4 самых ближайзих по времени</p>
@@ -59,6 +76,7 @@
 <p>Добавить кнопку выполненные, перенаправлять задачи в выполненное</p>
 <p>Сделать по клику переход с маленькой на полную версию задачи</p>
 <p>Для новичка сделать кроме приветствия обучалку по ресурсу</p>
+<p>Выделить, какая сортировка активна</p>
        </div>
        </div>
     </div> 
@@ -147,8 +165,8 @@
              </form>
     </div>
     </div>
-<div id="result_form" class="main col-lg-6 col-sm-5"></div>
-<div id="sort_sidebar" class="main col-lg-2 col-sm-2">
+<div id="result_form" class="main col-lg-5 col-sm-5"></div>
+<div id="sort_sidebar" class="main col-lg-3 col-sm-2">
     
           <ul class="sort">
               <li><a href="#"  onclick="sortTask('sortTaskPriority.php', '1')">Низкий</a></li>

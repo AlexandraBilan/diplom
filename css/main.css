@@ -12,8 +12,75 @@ body{
     margin: 0;
 }
 
+.left:nth-child(2)
+{
+    left: 175px;
+}
+.left:nth-child(3)
+{
+    left: 363px;
+}
 .header{
     margin-top: 25px;
+}
+.header-menu
+{
+    margin: 0 30px;
+}
+i
+{
+    margin-right: 5px;
+    position: relative;
+    float: right;
+}
+.fa-calendar-times-o, .fa-check-square-o
+{
+    margin-right: 35px;
+}
+.fa-pencil-square, .pancil
+{
+    color: #231688;
+}
+.fa-address-book, .book
+{
+    color: #037b98;
+}
+.fa-camera-retro, .camera
+{
+    color: #62890b;
+}
+.ui-accordion-header
+{
+    background: var(--backround-form);
+    color: var(--color-text);
+    border: none;
+    border-radius: 5px;
+    height: 50px;
+}
+.ui-accordion-header:nth-child(1)>i
+{
+/*    background: rgba(35, 22, 136, 0.29);*/
+    color: #231688;
+}
+#event_title>i
+{
+/*    background: rgba(3, 123, 152, 0.29);*/
+    color: #037b98;
+}
+#done_title>i
+{
+/*    background: rgba(195, 173, 8, 0.29);*/
+    color: #d1ba09;
+}
+#overdue_title>i
+{
+/*    background: rgba(116, 60, 4, 0.29);*/
+         color: rgb(195, 97, 0);
+}
+#memory_title>i
+{
+/*    background: rgba(98, 137, 11, 0.29);*/
+         color: #62890b;
 }
 .header-menu>li
 {
@@ -22,44 +89,6 @@ body{
     margin-right: 10px;
     border-radius: 10px;
 }
-/*
-.header-menu>li:nth-child(1)
-{
-     border: 2px solid #a0732a;
-    background: rgba(160, 115, 42, 0.16);
-}
-.header-menu>li:nth-child(1)>a
-{
-    color: #a0732a;
-}
-.header-menu>li:nth-child(1):hover
-{
-    background: none;
-    border: 2px solid #a0732a;
-}
-.header-menu>li:nth-child(1):hover>a
-{
-    color: #a0732a;
-}
-.header-menu>li:nth-child(2)
-{
-     border: 2px solid #7a7e13;
-     background: rgba(122, 126, 19, 0.19);
-}
-.header-menu>li:nth-child(2)>a
-{
-    color: #7a7e13;
-}
-.header-menu>li:nth-child(2):hover
-{
-     border: 2px solid #7a7e13;
-     background: none;
-}
-.header-menu>li:nth-child(2):hover>a
-{
-    color: #7a7e13;
-}
-*/
 .header-menu>li:hover{
     background: #fff;
     border: 2px solid var(--nav_btn-color-hover);
@@ -72,6 +101,7 @@ body{
     text-decoration: none;
     color: var(--nav_btn-color);
 }
+
 .main-spaice{
     margin-top: 35px;
 }
@@ -79,6 +109,7 @@ body{
     float: left;
     margin: 10px;
 }
+/*
 .task
 {
     height: inherit;         
@@ -87,6 +118,7 @@ body{
     box-shadow: #dbdbdb 0 2px 2px 3px;
     padding: 20px;
 }
+*/
 #body_note, #body_event
 {
     display: none;
@@ -150,23 +182,7 @@ input[name="task_body"]
     color: var(--nav_btn-color-hover);
 }
 
-.ui-accordion-header
-{
-    background: var(--backround-form);
-    color: var(--color-text);
-    border: none;
-    border-radius: 5px;
-}
-.ui-accordion-header:nth-child(1)
-{
-    background: rgba(160, 115, 42, 0.16);
-    color: #a0732a;
-}
-#event_title
-{
-    background: rgba(122, 126, 19, 0.19);
-    color: #7a7e13;
-}
+
 .sidebad
 {
     height: 300px;
@@ -187,11 +203,9 @@ input[name="task_body"]
 {
     margin-top: 10px;
 }
-/*
 #accordion>.title_block:hover {
   background: #b4c6ae;  
 }
-*/
 /*Получение таски*/
     .task
 {
@@ -199,7 +213,8 @@ input[name="task_body"]
     margin: 10px;    
     background: #fff;
     border-radius: 15px;
-    box-shadow: #dbdbdb 0 2px 2px 3px;
+    border: 1px solid var(--color-text);
+/*    box-shadow: #dbdbdb 0 2px 2px 3px;*/
     padding: 20px;
 }
 .task>p
@@ -247,7 +262,19 @@ input[name="task_body"]
     {
         bottom: 45px;
     }
-
+#done_delete
+{
+    text-decoration: none;
+    font-size: 1.3em;
+    color:  var(--color-text);
+    margin: 0 5px 0 0;
+}
+.event_place
+{
+    border: none;
+    margin: 0;
+    padding: 0;
+}
 /*Всплывающее окно*/
 .shadow
 {
@@ -266,10 +293,10 @@ input[name="task_body"]
     
     display: inline-block;
     border-radius: 50%;
- font-size: 20px;
+ font-size: 18px;
  border: 2px solid var(--color-text);
  color: var(--color-text);
- padding: 1px 9px;
+ padding: 0px 8px;
  cursor: pointer;
 }
 /*Выведение всех тегов*/
@@ -298,6 +325,7 @@ input[name="task_body"]
 }
 .sort>li
 {
+    display: inline-block;
 /*    border: 1px solid var(--color-text);*/
     border-radius: 10px;
     margin: 3px;
