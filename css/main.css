@@ -5,8 +5,14 @@
     --nav_btn-color: #78b165;
     --nav_btn-color-hover: #005500;
 }
+@font-face {
+  font-family: Montserrat Regular;
+  src: local("Scriptorama"),
+       url(font2.otf);
+}
 body{
 /*    background: rgba(43, 172, 170, 0.08);*/
+    font-family: Montserrat Regular;
     background: rgba(230, 238, 227, 0.31);
     padding: 0;
     margin: 0;
@@ -32,6 +38,7 @@ i
     margin-right: 5px;
     position: relative;
     float: right;
+    cursor: pointer;
 }
 .fa-calendar-times-o, .fa-check-square-o
 {
@@ -119,7 +126,7 @@ i
     padding: 20px;
 }
 */
-#body_note, #body_event
+#task_add, #event_add, #user_info
 {
     display: none;
     width: 600px;
@@ -133,7 +140,7 @@ width: 200px;
 float: right;
 color: var(--color-text);
 }
-#add_task>input, #add_task>.select>select, #add_tag>input, #add_event>input, #add_event>.select>select
+#add_task>input, #add_task>.select>select, #add_tag>input, #add_event>input, #add_event>.select>select, #userInfo>input, #userPass>input
 {
     width: 100%;
     margin: 5px;
@@ -158,7 +165,7 @@ color: var(--color-text);
     width: 90%;
 }
 
-#add_task>input::placeholder, #add_tag>input::placeholder, #add_event>input::placeholder
+#add_task>input::placeholder, #add_tag>input::placeholder, #add_event>input::placeholder, #userInfo>input::placeholder, #userPass>input::placeholder
 {
     color: var(--color-text);
     opacity: .5;
@@ -338,3 +345,61 @@ input[name="task_body"]
     color: var(--color-text);
 }
 
+#done_delete
+{
+    cursor: pointer;
+}
+
+/*скрывает объекты по смене хэша*/
+/*
+.none
+    {
+      display: none;
+    }
+*/
+
+/*просроченное*/
+#result_form_overdue_task, #result_form_overdue_event, #result_form_done_task, #result_form_done_event
+{
+    display: none;
+}
+
+/*Обновление личных данных*/
+.menu_userInfo
+{
+    width: 25%; 
+    float: left; 
+    border-right: 1px solid #c9c9c9; 
+    height: 300px; 
+    margin-right: 5%;
+}
+#changeUserInfo
+{
+    position: relative; 
+    top: 105px; 
+    border-bottom: 1px solid #c9c9c9; 
+    padding-bottom: 35px; 
+    cursor: pointer;
+}
+#changePass
+{
+    position: relative; 
+    top: 135px; 
+    cursor: pointer;
+}
+#new_pass
+{
+    width: 70%; 
+    float: left; 
+    padding-top: 30px; 
+    display: none;
+}
+#body_userInfo
+{
+    width: 70%; 
+    float: left;
+}
+#showThis
+{
+   cursor: pointer;
+}

@@ -69,9 +69,7 @@ function getUserInfo($db)
 			SELECT user.id FROM connect
 			LEFT JOIN user ON user.id = user_id
 			WHERE session = '$session'");
-    $userInfo = mysqli_fetch_row($q); //ЗАПОМНИ, ДУРА! ИЗВЛЕЧЕНИЕ ДАННЫХ ИЗ БД
-    $user_id = $userInfo[0];  //ЗАПОМНИ, ДУРА! ИЗВЛЕЧЕНИЕ ДАННЫХ ИЗ БД
+    $userInfo = mysqli_fetch_row($q);
+    $user_id = $userInfo[0];
     return $user_id;
-//    echo $user_id;
-//    var_dump($userInfo);
 }

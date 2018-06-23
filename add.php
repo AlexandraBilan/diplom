@@ -28,7 +28,7 @@ if(isset($_POST['task_name']) && !empty($_POST['task_name']))
           time = '$time',
           user_id = '$user_id'
 			");
-                var_dump($query);
+//                var_dump($query);
             }
             else{header("HTTP/1.1 400 Bad Request");
     echo "Впишите время";}
