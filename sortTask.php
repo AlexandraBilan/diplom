@@ -9,21 +9,21 @@ $q = mysqli_query($db, 'SELECT task.id, name_task, body_task, name_regularity, n
 LEFT JOIN regularity ON regularity_id = id_regularity
 LEFT JOIN priority ON priority_id = id_priority
 LEFT JOIN tag ON tag_id = tag.id 
-where user_id = '.$user_id.' AND '.$type.'_id = '.$send_priority_name.';');
+where task.user_id = '.$user_id.' AND '.$type.'_id = '.$send_priority_name.';');
 
 $count = mysqli_num_rows($q);
-if($count != 0)
-{
-for($i=0; $i < $count; $i++)
-{
-    $list[] = mysqli_fetch_assoc($q);
-}
-echo json_encode($list, JSON_UNESCAPED_UNICODE);
-}
-else
-{
-    echo '0';
-}
+    if($count != 0)
+        {
+        for($i=0; $i < $count; $i++)
+            {
+                $list[] = mysqli_fetch_assoc($q);
+            }
+            echo json_encode($list, JSON_UNESCAPED_UNICODE);
+        }
+     else
+        {
+            echo '0';
+        }
 //echo json_encode(array('type' => $type));
 
 ?>

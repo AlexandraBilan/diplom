@@ -10,8 +10,8 @@
   src: local("Scriptorama"),
        url(font2.otf);
 }
-body{
-/*    background: rgba(43, 172, 170, 0.08);*/
+body
+{
     font-family: Montserrat Regular;
     background: rgba(230, 238, 227, 0.31);
     padding: 0;
@@ -58,6 +58,7 @@ i
 }
 .ui-accordion-header
 {
+    font-family: Montserrat Regular;
     background: var(--backround-form);
     color: var(--color-text);
     border: none;
@@ -108,7 +109,10 @@ i
     text-decoration: none;
     color: var(--nav_btn-color);
 }
-
+.main_title
+{
+    padding-left: 15px;
+}
 .main-spaice{
     margin-top: 35px;
 }
@@ -116,17 +120,7 @@ i
     float: left;
     margin: 10px;
 }
-/*
-.task
-{
-    height: inherit;         
-    background: #fff;
-    border-radius: 15px;
-    box-shadow: #dbdbdb 0 2px 2px 3px;
-    padding: 20px;
-}
-*/
-#task_add, #event_add, #user_info
+#task_add, #event_add, #user_info, #note_add
 {
     display: none;
     width: 600px;
@@ -140,8 +134,9 @@ width: 200px;
 float: right;
 color: var(--color-text);
 }
-#add_task>input, #add_task>.select>select, #add_tag>input, #add_event>input, #add_event>.select>select, #userInfo>input, #userPass>input
+#add_task>input, #add_task>.select>select, #add_tag>input, #add_tag2>input, #add_tag3>input,  #add_tag4>input, #add_event>input, #add_event>.select>select, #userInfo>input, #userPass>input, #note_add>input, #result_form_get_tag_note
 {
+    font-family: Montserrat Regular;
     width: 100%;
     margin: 5px;
     background: var(--backround-form);
@@ -150,11 +145,26 @@ color: var(--color-text);
     border-radius: 5px;
     color: var(--color-text);
 }
-.select, input[name="date"]
+#photo
+{
+    color: #005500;
+    width: 100%;
+    position: relative;
+    bottom: -15px;
+    left: 20px;
+}
+#photoAdd
+{
+    position: relative;
+    left: 15px;
+    bottom: -5px;
+}
+.select
 {
     float: left;
     width: 50%;
 }
+
 .select>label
 {
     margin: 5px;
@@ -164,9 +174,21 @@ color: var(--color-text);
 {
     width: 90%;
 }
-
-#add_task>input::placeholder, #add_tag>input::placeholder, #add_event>input::placeholder, #userInfo>input::placeholder, #userPass>input::placeholder
+#add_date
 {
+    width: 100% !important;
+    height: 31px;
+    font-family: Montserrat Regular;
+    margin: 5px;
+    background: var(--backround-form);
+    border: none;
+    padding: 5px;
+    border-radius: 5px;
+    color: var(--color-text);
+}
+#add_task>input::placeholder, #add_tag>input::placeholder, #add_tag2>input::placeholder, #add_tag3>input::placeholder, #add_tag4>input::placeholder, #add_event>input::placeholder, #userInfo>input::placeholder, #userPass>input::placeholder, #note_add>input::placeholder
+{
+    font-family: Montserrat Regular;
     color: var(--color-text);
     opacity: .5;
 }
@@ -174,14 +196,25 @@ input[name="task_body"]
 {
     height: 50px;
 }
+button
+{
+      font-family: Montserrat Regular;
+}
 .btn
 {
+    clear: both;
     border: 2px solid var(--nav_btn-color);
     padding: 7px 8px;
     border-radius: 10px;
     margin: 5px;
     background: #fff;
     color: var(--nav_btn-color);
+   
+}
+#photoAdd
+{
+   color: var(--color-text);
+   margin: 5px;
 }
 .btn:hover{
 /*    background: #e6eee3;*/
@@ -221,7 +254,6 @@ input[name="task_body"]
     background: #fff;
     border-radius: 15px;
     border: 1px solid var(--color-text);
-/*    box-shadow: #dbdbdb 0 2px 2px 3px;*/
     padding: 20px;
 }
 .task>p
@@ -247,10 +279,7 @@ input[name="task_body"]
     margin: 2px;
     padding: 2px;
 }
-.tag
-{
-    border: 
-}
+
 .clearFix
     {
         clear: both;
@@ -281,6 +310,17 @@ input[name="task_body"]
     border: none;
     margin: 0;
     padding: 0;
+}
+
+#note_img
+{
+   width: 200px;
+}
+#note_img:hover
+{
+   position: absolute;
+   width: 600px;
+    z-index: 1;
 }
 /*Всплывающее окно*/
 .shadow
@@ -325,19 +365,30 @@ input[name="task_body"]
 {
     float: right;
 }
+.sort_sidebar_title
+{
+padding-left: 40px;
+/*    display: none;*/
+}
 .sort
 {
     list-style: none;
-    display: inline-block;
+/*    display: inline-block;*/
+    margin-left: 1px;
+    padding-left: 1px;
 }
 .sort>li
 {
     display: inline-block;
-/*    border: 1px solid var(--color-text);*/
     border-radius: 10px;
     margin: 3px;
-    padding: 2px;
-    background: var(--backround-form);
+    padding: 3px;
+    border-bottom: 1.5px solid #005500;
+}
+.sort>li:hover
+{
+     border: 1.5px solid #005500;
+    color: #005500;
 }
 .sort>li>a
 {
@@ -349,14 +400,6 @@ input[name="task_body"]
 {
     cursor: pointer;
 }
-
-/*скрывает объекты по смене хэша*/
-/*
-.none
-    {
-      display: none;
-    }
-*/
 
 /*просроченное*/
 #result_form_overdue_task, #result_form_overdue_event, #result_form_done_task, #result_form_done_event
@@ -402,4 +445,101 @@ input[name="task_body"]
 #showThis
 {
    cursor: pointer;
+}
+
+/*Настройка блока сортировки*/
+#tabs
+{
+    border: none;
+    color: #005500 !important;
+}
+#tabs>.ui-widget-content
+{
+height: 495px;
+}
+.ui-widget-content
+{
+    font-family: Montserrat Regular;
+    border: none;
+    padding: 1px;
+    border-radius: 10px;
+}
+#sort_task_div
+{
+    font-family: Montserrat Regular;
+    float: left;
+    margin-top: 20px;
+}
+.title_sort
+{
+    padding-left: 10px; 
+    color: #b4c6ae;
+}
+.ui-tabs-anchor
+{
+    background: var(--backround-form);
+    border: none;
+    color: #005500;
+}
+.ui-widget-header
+{
+    background: none;
+}
+.ui-tabs-nav
+{
+    background: none;
+    border: none;
+    color: #005500  !important;
+}
+#tabs .ui-state-active
+{
+     background: #005500;
+     border-radius: 5px;
+    padding-bottom: 2px;
+}
+
+  .ui-tabs-anchor
+{
+    border-radius: 5px;
+    color: #005500  !important;
+}
+
+.ui-corner-all
+{
+    border: none  !important;
+    color: #005500  !important;
+}
+ #sort_tabs
+{
+    border: none;
+    color: #005500;
+}
+.ui-widget-content
+{
+    background: #fff;
+}
+
+#result_form3
+{
+margin-top: 20px;
+margin-left: 25px;
+color: #005500;
+}
+#confirm
+{
+    background: #fff;
+    display: none;
+    width: 200px;
+    border: 1px solid #005500;
+    color:  #005500;
+    padding: 15px;
+    border-radius: 10px;
+}
+#confirm>p
+{
+    text-align: center;
+}
+#yes
+{
+    float: left;
 }

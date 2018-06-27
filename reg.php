@@ -11,6 +11,8 @@ if(empty($_POST)) {
 }
 else {
 	$mail = escape($_POST['mail'], $db);
+    if(preg_match_all('/^((([0-9A-Za-z]{1}[-0-9A-z\.]{1,}[0-9A-Za-z]{1})|([0-9А-Яа-я]{1}[-0-9А-я\.]{1,}[0-9А-Яа-я]{1}))@([-A-Za-z]{1,}\.){1,2}[-A-Za-z]{2,})$/u', $mail))
+    {
 	$login = escape($_POST['login'], $db);
 	$pass = escape($_POST['pass'], $db);
 	$pass2 = escape($_POST['pass2'], $db);
@@ -47,15 +49,23 @@ else {
 			header('Location: index.php');
             }
 			else {
-			render('about', ['errorText' => 'Такой логин уже используется!!!']);
-                
+                header('Location: index.php');
+                echo "<div class='error'>Этот логин занят. Пожалуйста, придумайте другой!</>";
 		}
 		}
 		else {
-			render('about', ['errorText' => 'Такой mail уже используется!!!']);
+			header('Location: index.php');
+            echo "<div class='error'>Такой e-mail уже используется.</div>";
 		}
 	}
 	else {
-		render('about', ['errorText' => 'Пароли не совпадают!!!']);
+	    header('Location: index.php');
+        echo "<div class='error'>Ваши пароли не совпали. Пожалуйста, попробуйте еще раз!</div>";
 	}
+}
+    else
+    {
+        
+        echo "<div class='error'>Ваш e-mail введен некорректно.</div>";
+    }
 }

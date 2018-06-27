@@ -28,14 +28,17 @@
     e.stopPropagation();
     });
   });
+    $( function() {
+    $("#tabs").tabs();
+  } );
   </script>
     <link rel="stylesheet" href="css/main.css">
-<!--    <link rel="stylesheet" href="../css/main.css">-->
+<!--<link rel="stylesheet" href="../css/main.css">-->
 <!--<script src="../main.js"></script>-->
 <script src="main.js"></script>
 </head>
 <body>
-<div class="shadow" onclick="hide_add_task('task_add'); hide_add_task('event_add'); hide_add_task('user_info')"></div>
+<div class="shadow" onclick="hide_add_task('task_add'); hide_add_task('event_add'); hide_add_task('user_info'); hide_add_task('note_add'); hide_add_task('confirm')"></div>
 <header class="container-fluid header">
 <ul class="header-menu nav justify-content-end" id="main">
     <li><a href="#">Помощь</a></li>
@@ -47,40 +50,34 @@
 <main class="main-spaice container-fluid">
     <div class="main col-lg-3 col-sm-4">
       <div class="nav_left"  id="accordion">
-       <h3 class="title_block" onclick="get_task()">Задачи <a href="#task" id="stopZ" title="Добавить задачу" onclick="show_add_task('task_add')"><i class="fa fa-plus fa-2x pancil"></i><i class="fa fa-pencil-square fa-2x"></i></a></h3>
+       <h3 class="title_block" onclick="get_task()">Задачи (<span id="countZ"></span>) <a href="#task" id="stopZ" title="Добавить задачу" onclick="show_add_task('task_add')"><i class="fa fa-plus fa-2x pancil"></i><i class="fa fa-pencil-square fa-2x"></i></a></h3>
        <div class="sidebad">
        <div id="show_task_preview"></div>
        </div>
-       <h3  class="title_block" id="event_title" onclick="get_full_event()">События <a href="#event" id="stopS" title="Добавить событие"  onclick="show_add_task('event_add')"><i class="fa fa-plus fa-2x book"></i><i class="fa fa-address-book fa-2x"></i></a></h3>
+       <h3  class="title_block" id="event_title" onclick="get_full_event()">События (<span id="countS"></span>)  <a href="#event" id="stopS" title="Добавить событие"  onclick="show_add_task('event_add')"><i class="fa fa-plus fa-2x book"></i><i class="fa fa-address-book fa-2x"></i></a></h3>
        <div class="sidebad">
             <div id="show_event_preview"></div>
        </div>
-       <h3 class="title_block" id="memory_title" onclick="get_memory()">Воспоминания<a href="#memory" id="stopV"  title="Добавить воспоминание" onclick="show_add_task('memory')"><i class="fa fa-plus fa-2x camera"></i><i class="fa fa-camera-retro fa-2x"></i></a></h3>
+       <h3 class="title_block" id="memory_title" onclick="get_note()">Заметки (<span id="countN"></span>) <a href="#memory" id="stopV"  title="Добавить воспоминание" onclick="show_add_task('note_add')"><i class="fa fa-plus fa-2x camera"></i><i class="fa fa-camera-retro fa-2x"></i></a></h3>
        <div class="sidebad">
-            <div id="show_memory_preview"></div>
+            <div id="show_note_preview"></div>
        </div>
-        <h3  class="title_block" id="done_title"> <i class="fa fa-check-square-o fa-2x"> </i>Выполненное</h3>
+        <h3  class="title_block" id="done_title"> <i class="fa fa-check-square-o fa-2x"> </i>Выполненное (<span id="countV"></span>) </h3>
        <div class="sidebad">
-       <div id="show_task_done_preview"></div>
-       <button onclick="show_done_task()">Список выполненных задач </button>
-       <div id="show_event_done_preview"></div>
-       <button onclick="show_done_event()">Список выполненных событий</button>
-       </div>
-       <h3 class="title_block" id="overdue_title"> <i class="fa fa-calendar-times-o fa-2x"> </i>Просроченное</h3>
-       <div class="sidebad">
-       <p>Просроченные задачи</p>
-       <div id="show_overdue_preview_task"></div>
-       <button onclick="show_overdue_task();">Показать все просроченные задачи</button>
-       <p>Просроченные события</p>
-       <div id="show_overdue_preview_event"></div>
-       <button onclick="show_overdue_event();">Показать все просроченные события</button>
+       <div id="show_task_done_preview" class="clearFix"></div>
+       <div>
+            <button  class="btn  clearFix" onclick="show_done_task()">Выполненные задачи</button>
        </div>
       
-       <h3  class="title_block">Что еще нужно сделать</h3>
+       <div id="show_event_done_preview"></div>
+       <button  class="btn" onclick="show_done_event()">Выполненные соббытия</button>
+       </div>
+       <h3 class="title_block" id="overdue_title"> <i class="fa fa-calendar-times-o fa-2x"> </i>Просроченное (<span id="countP"></span>) </h3>
        <div class="sidebad">
-<p>Для новичка сделать кроме приветствия обучалку по ресурсу</p>
-<p>Выделить, какая сортировка активна</p>
-<p>Удаление с выведением вопроса</p>
+       <div id="show_overdue_preview_task"></div>
+       <button  class="btn" onclick="show_overdue_task();">Все просроченные задачи</button>
+       <div id="show_overdue_preview_event"></div>
+       <button  class="btn" onclick="show_overdue_event();">Все просроченные события</button>
        </div>
        </div>
     </div> 
@@ -101,10 +98,10 @@
         <label for="regularity">Регулярность</label><br>
         <select name="regularity" size="1">
             <option value="1">Одноразово</option>
-            <option value="2">Каждый день</option>
-            <option value="3">Каждую неделю</option>
-            <option value="4">Каждый месяц</option>
-            <option value="5">Каждый год</option>
+            <option value="2">Ежедневно</option>
+            <option value="3">Еженедельно</option>
+            <option value="4">Ежемесячно</option>
+            <option value="5">Ежегодно</option>
         </select>
         </div>
         <div class="select">
@@ -119,12 +116,7 @@
     </form>
       
        <div id="result_form_add_task"></div>
-    <div class="tag">
-             <form method="post" id="add_tag">
-                 <input type="text" name="tag" placeholder="Создайте тег">
-                 <button id="btn_add_tag" class="btn">Добавить тег</button>
-             </form>
-    </div>
+
     </div>
     <div class="none main col-lg-6 col-sm-6" id="event_add">
     <form method="post" id="add_event">
@@ -144,10 +136,10 @@
         <label for="regularity">Регулярность</label><br>
         <select name="regularity" size="1">
             <option value="1">Одноразово</option>
-            <option value="2">Каждый день</option>
-            <option value="3">Каждую неделю</option>
-            <option value="4">Каждый месяц</option>
-            <option value="5">Каждый год</option>
+            <option value="2">Ежедневно</option>
+            <option value="3">Еженедельно</option>
+            <option value="4">Ежемесячно</option>
+            <option value="5">Ежегодно</option>
         </select>
         </div>
         <div class="select">
@@ -155,19 +147,16 @@
         <select name="tag" size="1" id="result_form_get_tag_event">
         </select>
         </div>
+        <div class="select">
+         <label for="date">Дата</label><br>
         <input type="date" name="date" id='add_date'>
+        </div>
         <button id="btn_add_event" class="btn">Добавить событие</button>
     </form>
  
     <div id="result_form_add_event"></div>
-    <div class="tag">
-             <form method="post" id="add_tag2">
-                 <input type="text" name="tag" placeholder="Создайте тег">
-                 <button id="btn_add_tag2" class="btn">Добавить тег</button>
-             </form>
+
     </div>
-    </div>
-    
 <div class="none main col-lg-6 col-sm-6" id="user_info">
 <div class="menu_userInfo">
 <div id="changeUserInfo" onclick="userInfoOn();">Личные данные</div>
@@ -178,7 +167,8 @@
 <form method="post" id="userPass">
 <input type="text" name="pass" placeholder="Текущий пароль" style="margin-bottom: 25px;">
 <input type="text" name="new_pass" placeholder="Новый пароль">
-<input type="text" name="new_pass2" placeholder="Повторите пароль"><button class="btn" onclick="userPassUpdate();">Обновить данные</button>
+<input type="text" name="new_pass2" placeholder="Повторите пароль">
+<button class="btn" onclick="updatePass();">Обновить данные</button>
 </form>
 </div>
 <div id="body_userInfo" class="body_userInfo">
@@ -191,31 +181,88 @@
 <div id="result_form_overdue_event" class="main col-lg-5 col-sm-5"></div>
 <div id="result_form_done_task" class="main col-lg-5 col-sm-5"></div>
 <div id="result_form_done_event" class="main col-lg-5 col-sm-5"></div>
-<div id="sort_sidebar" class="main col-lg-3 col-sm-2">
-    
-          <ul class="sort">
+<div class="main col-lg-3 col-sm-2">
+<h3 class="sort_sidebar_title">Отфильтровать</h3>
+<div id="tabs">
+  <ul>
+    <li id='sort_tabs'><a href="#tabs-1">Задачи</a></li>
+    <li id='sort_tabs'><a href="#tabs-2">События</a></li>
+  </ul>
+  <div id="tabs-1">
+  <h6 class="title_sort">по приоритету</h6>
+   <ul class="sort">
               <li><a href="#"  onclick="sortTask('priority', '1')">Низкий</a></li>
               <li><a href="#"  onclick="sortTask('priority', '2')">Средний</a></li>
               <li><a href="#"  onclick="sortTask('priority', '3')">Высокий</a></li>
           </ul>
-          
+    <h6 class="title_sort">по регулярности</h6>        
            <ul class="sort">
               <li><a href="#"  onclick="sortTask('regularity', '1')">Одноразово</a></li>
-              <li><a href="#"  onclick="sortTask('regularity', '2')">Каждый день</a></li>
-              <li><a href="#"  onclick="sortTask('regularity', '3')">Каждую неделю</a></li>
-              <li><a href="#"  onclick="sortTask('regularity', '4')">Каждый месяц</a></li>
-              <li><a href="#"  onclick="sortTask('regularity', '5')">Каждый год</a></li>
+              <li><a href="#"  onclick="sortTask('regularity', '2')">Ежедневно</a></li>
+              <li><a href="#"  onclick="sortTask('regularity', '3')">Еженедельно</a></li>
+              <li><a href="#"  onclick="sortTask('regularity', '4')">Ежемесячно</a></li>
+              <li><a href="#"  onclick="sortTask('regularity', '5')">Ежегодно</a></li>
           </ul>
+   <h6 class="title_sort">по тегам</h6>
           <ul id="sort_tag" class="sort"></ul>
-             <div class="tag">
+             <div class="tag" id="sort_task_div">
              <form method="post" id="add_tag3">
                  <input type="text" name="tag" placeholder="Создайте тег">
                  <button id="btn_add_tag3" class="btn">Добавить тег</button>
              </form>
             </div>
+            <div id="response"></div>
           <div id="not_sort"></div>
+  </div>
+  <div id="tabs-2">
+   <h6 class="title_sort">по приоритету</h6>
+   <ul class="sort">
+              <li><a href="#"  onclick="sortEvent('priority', '1')">Низкий</a></li>
+              <li><a href="#"  onclick="sortEvent('priority', '2')">Средний</a></li>
+              <li><a href="#"  onclick="sortEvent('priority', '3')">Высокий</a></li>
+          </ul>
+    <h6 class="title_sort">по регулярности</h6>        
+           <ul class="sort">
+              <li><a href="#"  onclick="sortEvent('regularity', '1')">Одноразово</a></li>
+              <li><a href="#"  onclick="sortEvent('regularity', '2')">Ежедневно</a></li>
+              <li><a href="#"  onclick="sortEvent('regularity', '3')">Еженедельно</a></li>
+              <li><a href="#"  onclick="sortEvent('regularity', '4')">Ежемесячно</a></li>
+              <li><a href="#"  onclick="sortEvent('regularity', '5')">Ежегодно</a></li>
+          </ul>
+   <h6 class="title_sort">по тегам</h6>
+          <ul id="sort_tag2" class="sort"></ul>
+             <div class="tag" id="sort_task_div">
+             <form method="post" id="add_tag4">
+                 <input type="text" name="tag" placeholder="Создайте тег">
+                 <button id="btn_add_tag4" class="btn">Добавить тег</button>
+             </form>
+            </div>
+            <div id="response"></div>
+          <div id="not_sort"></div>
+  </div>
 </div>
-
+</div>
+<div id="confirm"></div>
+<div class="main col-lg-6 col-sm-6" id="note_add">
+    <p class="close_add_form"  onclick="hide_add_task('note_add')">X</p>
+    <input type="text" id='body_note' placeholder="Создайте заметку">  
+    <input type="text" id='place' placeholder="Место происходящего (при желании)">
+       <input type="date" id='date'>
+       <div class="select clearFix">
+      <label for="tag">Теги</label>
+        <select name="tag" size="1" id="result_form_get_tag_note">
+        </select>
+        </div>
+    <input type="hidden" name="MAX_FILE_SIZE" />
+    <span id="photoAdd">Добавьте фото</span><br>
+    <form id="test_add_note"  class="clearfix">
+       <fieldset>
+        <input id="photo" name='file' type="file" accept="image/gif, image/jpeg,  image/jpg, image/png" />
+        </fieldset>
+    </form>
+    <button class="btn" onclick="addNote();">Добавить заметку</button>
+    <div id="result_form3"></div>
+</div>
 </main>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 </body>

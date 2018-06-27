@@ -2,6 +2,9 @@
 require_once 'function.php';
 $db = getConnect();
 $user_id = getUserInfo($db);
+
+
+
 if(isset($_POST['task_name']) && !empty($_POST['task_name']))
 {
     $task_name = escape($_POST['task_name'], $db);

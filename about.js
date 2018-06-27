@@ -1,4 +1,4 @@
- var current = 'onePage';
+var current = 'onePage';
 function show(id) 
 {
 	document.getElementById(current).style.display = 'none';

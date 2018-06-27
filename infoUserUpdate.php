@@ -18,6 +18,13 @@ $user_surname = escape($_POST['user_surname'], $db);
           WHERE user.id = '$user_id'
 			");
 
-echo json_encode(array('result' => $query));
-
+//echo json_encode(array('result' => $query));
+if(var_dump($query) == true)
+{
+    echo '0';
+}
+else
+{
+    echo '1';
+}
 ?>
